@@ -1528,7 +1528,7 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap {
-        max-width: 40em
+        max-width: 35em
     }
 }
 
@@ -1546,8 +1546,8 @@ table td {
 }
 
 .hero__wrap .hero__avatar {
-    width:25%;
-    height:25%;
+    width:30%;
+    height:30%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1556,8 +1556,8 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__avatar {
-        width:35%;
-        height:35%;
+        width:40%;
+        height:40%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -1586,9 +1586,9 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__download {
-        font-size: 11px;
+        font-size: 12px;
         border: 1px solid #fff;
-        padding: 15px 45px;
+        padding: 10px 35px;
     }
 }
 
