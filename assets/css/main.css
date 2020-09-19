@@ -1538,6 +1538,7 @@ table td {
 
 
 .hero__wrap .hero__download{
+    text-decoration:none;
     font-size: 14px;
     border: 1px solid #fff;
     padding: 15px 45px;
@@ -1557,6 +1558,7 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__download {
+        text-decoration:none;
         font-size: 14px;
         border: 1px solid #fff;
         padding: 15px 45px;
