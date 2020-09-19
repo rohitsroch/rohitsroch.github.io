@@ -2,9 +2,7 @@
 title: Rohit Sroch # your site title
 author: rohit.iitr1994@gmail.com # You :P
 description: > # Meta description of Homepage
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Hi there, I am Rohit Sroch 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://rohitsroch.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -32,14 +30,14 @@ tagline: >
 hero_avatar: avatar.jpg
 hero_img: posts/emile-perron-190221_lg.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
 
-email: rohitsroch@domain.com # email for form submission
+email: rohitsroch@gmail.com # email for form submission
 
 twitter_username: rohitsroch # replace with your_twitter_username or comment to remove link from footer
 github_username:  rohitsroch # replace with your_github_username or comment to remove link from footer
 instagram_username: rohitsroch # replace with your_instagram_username or comment to remove link from footer
 
 disqus:
-  shortname:  # to enable comments replace with your_disqus_shortname
+  shortname: rohitsroch  # to enable comments replace with your_disqus_shortname
 
 # google_tag_manager: GTM-XXXXXXX # Uncomment to enable GTM. Replace GTM-XXXXXXX with your GTM container ID
 
@@ -60,7 +58,6 @@ exclude:
   - vendor
   - npm-debug.log
   - gulpfile.js
-  - sleek.jpg
 
 include: ['_pages']
 permalink: /:title/
