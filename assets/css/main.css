@@ -1558,7 +1558,6 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__download {
-        text-decoration:none;
         font-size: 14px;
         border: 1px solid #fff;
         padding: 15px 45px;
@@ -1567,9 +1566,13 @@ table td {
 
 .hero__wrap  .hero__download:focus,.hero__download:hover{
     background-color:#fff;
-    text-decoration:none;
     color:#0066CC;
     opacity:0.95;
+}
+
+.hero__wrap .hero__download a {
+    
+    text-decoration:none;
 }
 
 
