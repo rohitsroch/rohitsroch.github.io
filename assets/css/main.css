@@ -1517,8 +1517,8 @@ table td {
 }
 
 .hero__wrap .hero__avatar {
-    width:30%;
-    height:30%;
+    width:28%;
+    height:28%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1527,8 +1527,8 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__avatar {
-        width:35%;
-        height:35%;
+        width:33%;
+        height:33%;
         display: block;
         margin-left: auto;
         margin-right: auto;
