@@ -1431,7 +1431,7 @@ table td {
 
 .hero {
     margin: 3.75rem auto 0;
-    min-height: 20.25rem;
+    min-height: 28.25rem;
     width: 100%;
     position: relative;
     background-color: #dde5ea;
@@ -1511,8 +1511,8 @@ table td {
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__title {
         padding: 1rem 0;
-        font-size: 2.125em;
-        line-height: 1.125rem
+        font-size: 2.0em;
+        line-height: 1.115rem
     }
 }
 
@@ -1527,8 +1527,8 @@ table td {
 
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__avatar {
-        width:40%;
-        height:40%;
+        width:35%;
+        height:35%;
         display: block;
         margin-left: auto;
         margin-right: auto;
