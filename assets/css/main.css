@@ -1,5 +1,6 @@
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
+    scroll-behavior: smooth;
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
@@ -328,7 +329,7 @@ a {
     text-decoration: none;
     -webkit-transition: all .2s linear;
     transition: all .2s linear;
-    border-bottom: 1px dashed #277cea
+    /*border-bottom: 1px dashed #277cea*/
 }
 
 a:active,
@@ -339,7 +340,7 @@ a:focus {
 a:hover,
 a:focus {
     color: #68a4f1;
-    border-bottom: 1px solid #68a4f1
+    /*border-bottom: 1px solid #68a4f1*/
 }
 
 hr {
@@ -416,6 +417,24 @@ pre>code {
     visibility: hidden
 }
 
+.ticker{
+    background-color: #adadad;
+    color: #fff;
+    padding: 15px 40px;
+    opacity: 0.8;
+    z-index: 4;
+    width: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    -webkit-transition: background-color 0.5s ease, -webkit-transform .3s;
+    transition: background-color 0.5s ease, -webkit-transform .3s;
+    transition: transform .3s, background-color 0.5s ease;
+    transition: transform .3s, background-color 0.5s ease, -webkit-transform .3s;
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%)
+}
+
 .container {
     padding: 0 20px;
     margin: 0 auto;
@@ -423,32 +442,33 @@ pre>code {
 }
 
 @media only screen and (min-width: 36em) {
-    .container {
+    .container .ticker{
         margin: 0 auto;
         max-width: 540px
     }
 }
 
 @media only screen and (min-width: 48em) {
-    .container {
+    .container .ticker{
         margin: 0 auto;
         max-width: 720px
     }
 }
 
 @media only screen and (min-width: 62em) {
-    .container {
+    .container .ticker{
         margin: 0 auto;
         max-width: 960px
     }
 }
 
 @media only screen and (min-width: 75em) {
-    .container {
+    .container .ticker{
         margin: 0 auto;
         max-width: 1170px
     }
 }
+
 
 .header {
     background-color: #fff;
@@ -1431,7 +1451,7 @@ table td {
 
 .hero {
     margin: 3.75rem auto 0;
-    min-height: 28.25rem;
+    min-height: 27.25rem;
     width: 100%;
     position: relative;
     background-color: #dde5ea;
@@ -1538,8 +1558,8 @@ table td {
 
 
 .hero__wrap .hero__download{
-    text-decoration:none;
     font-size: 14px;
+    color: #fff;
     border: 1px solid #fff;
     padding: 15px 45px;
     cursor:pointer;
@@ -1559,6 +1579,7 @@ table td {
 @media only screen and (min-width: 48em) {
     .hero__wrap .hero__download {
         font-size: 14px;
+        color: #fff;
         border: 1px solid #fff;
         padding: 15px 45px;
     }
@@ -1567,12 +1588,11 @@ table td {
 .hero__wrap  .hero__download:focus,.hero__download:hover{
     background-color:#fff;
     color:#0066CC;
-    opacity:0.95;
+    opacity:0.92;
 }
 
-.hero__wrap .hero__download a {
-    
-    text-decoration:none;
+.hero__wrap a{
+    text-decoration: none;
 }
 
 
