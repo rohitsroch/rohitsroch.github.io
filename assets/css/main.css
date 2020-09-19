@@ -329,7 +329,7 @@ a {
     text-decoration: none;
     -webkit-transition: all .2s linear;
     transition: all .2s linear;
-    /*border-bottom: 1px dashed #277cea*/
+    border-bottom: 1px dashed #277cea
 }
 
 a:active,
@@ -340,7 +340,7 @@ a:focus {
 a:hover,
 a:focus {
     color: #68a4f1;
-    /*border-bottom: 1px solid #68a4f1*/
+    border-bottom: 1px solid #68a4f1
 }
 
 hr {
@@ -418,12 +418,15 @@ pre>code {
 }
 
 .ticker{
+    margin: 0 auto;
     background-color: #adadad;
     color: #fff;
-    padding: 15px 40px;
+    padding: 15px 60px;
     opacity: 0.8;
+    font-weight: bold;
+    font-family: sans-serif;
     z-index: 4;
-    width: 100%;
+    width: auto;
     top: 0;
     left: 0;
     will-change: transform;
@@ -442,28 +445,28 @@ pre>code {
 }
 
 @media only screen and (min-width: 36em) {
-    .container .ticker{
+    .container {
         margin: 0 auto;
         max-width: 540px
     }
 }
 
 @media only screen and (min-width: 48em) {
-    .container .ticker{
+    .container {
         margin: 0 auto;
         max-width: 720px
     }
 }
 
 @media only screen and (min-width: 62em) {
-    .container .ticker{
+    .container {
         margin: 0 auto;
         max-width: 960px
     }
 }
 
 @media only screen and (min-width: 75em) {
-    .container .ticker{
+    .container {
         margin: 0 auto;
         max-width: 1170px
     }
@@ -1593,6 +1596,7 @@ table td {
 
 .hero__wrap a{
     text-decoration: none;
+    border-bottom: none
 }
 
 
