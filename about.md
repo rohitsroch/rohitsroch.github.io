@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Hi there, welcome to my personal English tech [Blog](https://rohitsroch.github.io/#latest-posts) !
+Hi there, Welcome to my personal English tech [Blog](https://rohitsroch.github.io/#latest-posts) !
 
 I'm Rohit Sroch currently working as a Senior Machine Learning Engineer at [Quantiphi](https://www.quantiphi.com/). My interest mainly lies in building AI systems for NLU/NLP and Speech domain. I firmly believe in making AI accessible and useful to everyone.
 
