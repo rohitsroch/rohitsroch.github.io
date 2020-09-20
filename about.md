@@ -4,10 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Sleek is a modern Jekyll theme focused on speed performance & SEO best practices. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/) or simply read the guide on how to [get started](/getting-started)
+Hi there, I'm Rohit Sroch currently working as a Senior Machine Learning Engineer at [Quantiphi](https://www.quantiphi.com/). My interest mainly lies in building AI systems for NLU/NLP and Speech domain. I firmly believe in making AI accessible and useful to everyone.
 
-You can find the source code for the Jekyll new theme at:
-[sleek](https://github.com/janczizikow/sleek)
+I graduated from Indian Institute of Technology (IIT) Roorkee in 2017 under the discipline of Metallurgical & Materials Engineering. During my undergraduate days, I got my interest in field of Computer Science and decided to persue this as my career path. Due to my rigorous hardwork, I landed a summer internship as a Software Developer at [Practo](https://www.practo.com/). After graduation, I worked as a Software Developer for few months and finally decided to move in field of data science. Since then, I have learnt alot and involved in ideating/building solution architecture for some of the most difficult problem statements. Also, I always like to approach any problem with a research mindset.   
 
-You can find the source code for Jekyll at
-[jekyll](https://github.com/jekyll/jekyll)
+In my spare time, I like to watch sci-fi/comedy movies and love to discuss about space theories.
+
+If you want to talk to me, feel free to shoot me an email at rohitsroch@gmail.com or contact me [here](https://rohitsroch.github.io/contact/)
