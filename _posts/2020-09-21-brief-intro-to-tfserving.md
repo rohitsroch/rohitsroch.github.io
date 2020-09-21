@@ -90,7 +90,7 @@ Breaking down the command line arguments,
 
 - -p 8501:8501= Publishing the container’s port 8501 (where TF Serving responds to REST API requests) to the host’s port 8501
 
-- --mount type=bind,source=<export_saved_model_path>,target=/models/my_model= Mounting the host’s local directory (<export_saved_model_path>) on the container (/models/my_model) so TF Serving can read the model from inside the container.
+- --mount type=bind,source=export_saved_model_path,target=/models/my_model= Mounting the host’s local directory (export_saved_model_path) on the container (/models/my_model) so TF Serving can read the model from inside the container.
 
 - -e MODEL_NAME=my_model= Telling TensorFlow Serving to load the model named “my_model”
 
