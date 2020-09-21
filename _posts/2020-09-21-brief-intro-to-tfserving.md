@@ -12,19 +12,16 @@ Serving machine learning models quickly and easily is one of the key challenges 
 
 Docker is a tool that packages software into units called containers that include everything needed to run the software.The documentation is very comprehensive and I encourage you to check it for the details.
 
-![TF Serving Architecture]({{ site.url }}{{ site.baseurl }}/assets/img/posts/tfserving-architecture.jpg)
-
 ## TF Serving Architecture
+
+![TF Serving Architecture]({{ site.url }}{{ site.baseurl }}/assets/img/posts/tfserving-architecture.jpg)
 
 1. A Source plugin creates a Loader for a specific version. The Loader contains whatever metadata it needs to load the Servable.
 2. The Source uses a callback to notify the Manager of the Aspired Version.
 3. The Manager applies the configured Version Policy to determine the next action to take, which could be to unload a previously loaded version or to load the new version.
 4. If the Manager determines that it's safe, it gives the Loader the required resources and tells the Loader to load the new version.
 5. Clients ask the Manager for the Servable, either specifying a version explicitly or just requesting the latest version. The Manager returns a handle for the Servable.
-
-For example, say a Source represents a TensorFlow graph with frequently updated model weights. The weights are stored in a file on disk.
-
-6. The Source detects a new version of the model weights. It creates a Loader that contains a pointer to - the model data on disk.
+6. Let say a Source represents a TensorFlow graph with frequently updated model weights. The weights are stored in a file on disk. The Source detects a new version of the model weights. It creates a Loader that contains a pointer to - the model data on disk.
 7. The Source notifies the Dynamic Manager of the Aspired Version.
 8. The Dynamic Manager applies the Version Policy and decides to load the new version.
 9. The Dynamic Manager tells the Loader that there is enough memory. The Loader instantiates the TensorFlow graph with the new weights.
@@ -36,7 +33,7 @@ For example, say a Source represents a TensorFlow graph with frequently updated 
 
 - TensorFlow Serving uses the SavedModel format for its ML models. A SavedModel is a language-neutral, recoverable, hermetic serialization format that enables higher-level systems and tools to produce, consume, and transform TensorFlow models.
 
-- tf.saved_model.builder api is used to create a SavedModel. The tf.saved_model.builder.SavedModelBuilder class provides functionality to save multiple MetaGraphDefs. A MetaGraph is a dataflow graph, plus its associated variables, assets, and signatures. A MetaGraphDef is the protocol buffer representation of a MetaGraph. A signature is the set of inputs to and outputs from a graph.
+- **tf.saved_model.builder** provides a low-level api used to create a SavedModel. The **tf.saved_model.builder.SavedModelBuilder** class provides functionality to save multiple MetaGraphDefs. A MetaGraph is a dataflow graph, plus its associated variables, assets, and signatures. A MetaGraphDef is the protocol buffer representation of a MetaGraph. A signature is the set of inputs to and outputs from a graph.
 
 - If assets need to be saved and written or copied to disk, they can be provided when the first MetaGraphDef is added. If multiple MetaGraphDefs are associated with an asset of the same name, only the first version is retained.
 
@@ -61,8 +58,11 @@ To serve saved model using Docker, follow the below steps:
 Once you have Docker installed, you can pull the latest TensorFlow Serving docker image by running:
 
 ```bash
-
+ # For CPU
  $ docker pull tensorflow/serving
+ 
+ # For GPU
+ $ docker pull tensorflow/serving:latest-gpu 
 ```
 
 **NOTE:** This will pull down an minimal Docker image with TensorFlow Serving installed. See the Docker Hub [tensorflow/serving](http://hub.docker.com/r/tensorflow/serving/tags/) repo for other versions of images you can pull.
@@ -74,17 +74,15 @@ To run the TF serving image, you can do it on  Google Cloud VM Instances  by run
 Run the docker container for **gRPC API** call OR **REST API** call
 
 ```bash
-
- //For gRPC API call run the following
- docker run -p 8500:8500 \
+ # For gRPC API call at 8500 and REST API call at 8501 run the following (on CPU)
+ $ docker run -p 8500:8500 -p 8501:8501 \
   --mount type=bind,source=<export_saved_model_path>,target=/models/my_model \
   -e MODEL_NAME=my_model  -t tensorflow/serving &
-
-
- //For REST API call run the following
- docker run -p 8501:8501 \
-  --mount type=bind,source=<export_saved_model_path>,target=/models/my_model  \
-  -e MODEL_NAME=my_model -t tensorflow/serving &
+ 
+ # For gRPC API call at 8500 and REST API call at 8501 run the following (on GPU)
+ $ docker run --runtime=nvidia -p 8500:8500 -p 8501:8501 \
+  --mount type=bind,source=<export_saved_model_path>,target=/models/my_model \
+  -e MODEL_NAME=my_model  -t tensorflow/serving:latest-gpu &
 ```
 
 Breaking down the command line arguments,
@@ -104,17 +102,13 @@ This will run the docker container and launch the TensorFlow Serving Model Serve
 Internally, Running one of the above command to run the docker container will result in running TF serving Model Server. This will run in the container:
 
 ```bash
-
  $ tensorflow_model_server --port=8500 --rest_api_port=8501 --model_name=my_model --model_base_path=/models/my_model
-
 ```
 
 Also, In case you wanted to load the model directly from a Google Cloud Storage bucket. Run the following command using same docker image
 
 ```bash
-
  $ docker run -p 8500:8500 -e MODEL_BASE_PATH=gs://ca-sbox-cro-444-case-doc/savedmodel -e MODEL_NAME=my_model -t tensorflow/serving &
-
 ```
 
 License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)
