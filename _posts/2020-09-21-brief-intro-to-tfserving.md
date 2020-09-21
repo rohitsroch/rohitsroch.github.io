@@ -53,7 +53,7 @@ Once you have exported the saved model format for your ML models. You can deploy
 
 To serve saved model using Docker, follow the below steps:
 
-#### Pulling the Serving Image. 
+#### Pulling the Serving Image
 
 Once you have Docker installed, you can pull the latest TensorFlow Serving docker image by running:
 
@@ -71,7 +71,7 @@ Once you have Docker installed, you can pull the latest TensorFlow Serving docke
 
 To run the TF serving image, you can do it on  Google Cloud VM Instances  by running the Instance via ssh or do it locally.
 
-Run the docker container for **gRPC API** call OR **REST API** call
+Run the docker container for **gRPC API** call or **REST API** call
 
 ```bash
  # For gRPC API call at 8500 and REST API call at 8501 run the following (on CPU)
@@ -90,9 +90,9 @@ Breaking down the command line arguments,
 
 - -p 8501:8501= Publishing the container’s port 8501 (where TF Serving responds to REST API requests) to the host’s port 8501
 
-- --mount type=bind,source=<export_saved_model_path>,target=/models/speech_to_text= Mounting the host’s local directory (<export_saved_model_path>) on the container (/models/speech_to_text) so TF Serving can read the model from inside the container.
+- --mount type=bind,source=<export_saved_model_path>,target=/models/my_model= Mounting the host’s local directory (<export_saved_model_path>) on the container (/models/my_model) so TF Serving can read the model from inside the container.
 
-- -e MODEL_NAME=speech_to_text= Telling TensorFlow Serving to load the model named “speech_to_text”
+- -e MODEL_NAME=my_model= Telling TensorFlow Serving to load the model named “my_model”
 
 - -t tensorflow/serving= Running a Docker container based on the serving image “tensorflow/serving”
 
@@ -114,5 +114,7 @@ Also, In case you wanted to serve a savedmodel directly from a Google Cloud Stor
  # For GPU
  $ docker run -p 8500:8500 -p 8501:8501 -e MODEL_BASE_PATH=gs://mybucket/savedmodel -e MODEL_NAME=my_model -t tensorflow/serving:latest-gpu &
 ```
+
+*Thanks for reading and see you on the next one!*
 
 License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)
