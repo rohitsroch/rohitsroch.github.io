@@ -105,10 +105,14 @@ Internally, Running one of the above command to run the docker container will re
  $ tensorflow_model_server --port=8500 --rest_api_port=8501 --model_name=my_model --model_base_path=/models/my_model
 ```
 
-Also, In case you wanted to load the model directly from a Google Cloud Storage bucket. Run the following command using same docker image
+Also, In case you wanted to serve a savedmodel directly from a Google Cloud Storage bucket. Run the following command using same docker image
 
 ```bash
- $ docker run -p 8500:8500 -e MODEL_BASE_PATH=gs://ca-sbox-cro-444-case-doc/savedmodel -e MODEL_NAME=my_model -t tensorflow/serving &
+ # For CPU
+ $ docker run -p 8500:8500 -p 8501:8501 -e MODEL_BASE_PATH=gs://mybucket/savedmodel -e MODEL_NAME=my_model -t tensorflow/serving &
+ 
+ # For GPU
+ $ docker run -p 8500:8500 -p 8501:8501 -e MODEL_BASE_PATH=gs://mybucket/savedmodel -e MODEL_NAME=my_model -t tensorflow/serving:latest-gpu &
 ```
 
 License: [CC-BY](https://creativecommons.org/licenses/by/3.0/)
