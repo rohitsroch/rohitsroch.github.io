@@ -461,7 +461,7 @@ pre>code {
 @media only screen and (min-width: 62em) {
     .container {
         margin: 0 auto;
-        max-width: 960px
+        max-width: 940px
     }
 }
 
@@ -566,7 +566,8 @@ pre>code {
     left: 0;
     width: 100%;
     height: auto;
-    background: #fff
+    background: #fff;
+    font-size: 14px;
 }
 
 .header__link {
@@ -1517,7 +1518,8 @@ table td {
     color: rgba(255, 255, 255, 0.8);
     width: 100%;
     max-width: 90%;
-    z-index: 1
+    z-index: 1;
+    font-size: 14px;
 }
 
 @media only screen and (min-width: 48em) {
