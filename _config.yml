@@ -22,6 +22,8 @@ navigation: # Navigation links
   - {name: 'Home', link: '/'}
   - {name: 'About', link: '/about'}
   - {name: 'Contact', link: '/contact'}
+  - {name: 'Categories', link: '/categories'}
+  - {name: 'Blog', link: '/#latest-posts'}
 
 tagline: >
     I'm a Machine Learning Enthusiast with experience in building AI systems for NLU/NLG and Speech Domain
