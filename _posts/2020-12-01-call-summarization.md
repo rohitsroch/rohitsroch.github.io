@@ -26,7 +26,7 @@ c) <ins>Human-labelled summary</ins> of ith meeting as Y<sub>i</sub> for both th
 
 ## How its helpful ?
 
-As we know that customer support is a crucial part of every industry. And By transforming customer service interactions, AI-powered digital solutions are prepared to improve every aspect of business.
+As we know that customer support is a crucial part of every industry. And by transforming customer service interactions, AI-powered digital solutions are prepared to improve every aspect of business.
 
 The solution on which I worked was specifically build for a Travel and Hospitality industry.
 
@@ -56,7 +56,7 @@ meeting consists of utterances from different speakers and forms a natural multi
    
 5. <ins>Generative Hallucinations:</ins> Generative models also have a problem of hallucinations due to which it predicted summary contains facts that are not even mentioned in the actual input transcript. So, How can we generate in a controlled manner.
    
-6. <ins>Incorrect Gender</ins>: If human-labelled summary contains sentences referring speaker as third person (he or she) then, it can be possible that generated summary will contain wrong gender. So, How do we identify gender of each speaker from the original audio call and incoporate that to correct the gender in final prediction.
+6. <ins>Incorrect Gender</ins>: If human-labelled summary contains sentences referring speaker as third person (he or she) then, it can be possible that generated summary would contain wrong gender. So, How do we identify gender of each speaker from the original audio call and incoporate that to correct the gender in final prediction.
    
 
 ## Previous Research Work
