@@ -2,7 +2,7 @@
 layout: post
 title: Brief Introduction to TF-Serving
 summary: TensorFlow Serving is a flexible, high-performance serving system for machine learning models, designed for production environments.
-featured-img: brief-intro-tfserving-card
+featured-img: brief-intro-tfserving/brief-intro-tfserving-card
 categories: MLOps
 ---
 
@@ -14,7 +14,7 @@ Docker is a tool that packages software into units called containers that includ
 
 ## TF Serving Architecture
 
-![TF Serving Architecture]({{ site.url }}{{ site.baseurl }}/assets/img/posts/tfserving-architecture.jpg)
+![TF Serving Architecture]({{ site.url }}{{ site.baseurl }}/assets/img/posts/brief-intro-tfserving/tfserving-architecture.jpg)
 
 1. A Source plugin creates a Loader for a specific version. The Loader contains whatever metadata it needs to load the Servable.
 2. The Source uses a callback to notify the Manager of the Aspired Version.
@@ -39,7 +39,7 @@ Docker is a tool that packages software into units called containers that includ
 
 - Each MetaGraphDef added to the SavedModel must be annotated with user-specified tags. The tags provide a means to identify the specific MetaGraphDef to load and restore, along with the shared set of variables and assets. These tags typically annotate a MetaGraphDef with its functionality (for example, serving or training), and optionally with hardware-specific aspects (for example, GPU).
 
-![SavedModel format]({{ site.url }}{{ site.baseurl }}/assets/img/posts/savedmodel-format.png)
+![SavedModel format]({{ site.url }}{{ site.baseurl }}/assets/img/posts/brief-intro-tfserving/savedmodel-format.png)
 
 **NOTE:** For more details, please follow <https://www.tensorflow.org/serving/signature_defs> to understand the concept of signature_defs while exporting savedmodel format for TF serving.
 
