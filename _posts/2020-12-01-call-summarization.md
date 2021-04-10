@@ -13,12 +13,12 @@ Let's now deep dive into problem definition in detail:
 
 Given a call audio between *Agent Speaker* and *Customer Speaker* (or multiple speaker), goal is to generate a domain adapted abstractive summary such that it should be concise and should capture the important facts corresponding each speaker in the call. 
 
-Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case its 2, which means S={Agent, customer}) and we have total of N meetings in total. So, the transcripts are X = {X<sub>1</sub>, X<sub>2</sub>, ...X<sub>N</sub>}. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
+Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case its 2, which means S={Agent, customer}) and we have N meetings in total. So, the transcripts are X = {X<sub>1</sub>, X<sub>2</sub>, ...X<sub>N</sub>}. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
 Thus, X<sub>i</sub> = {(s<sub>1</sub>, u<sub>1</sub>),(s<sub>2</sub>, u<sub>2</sub>), ...,(s<sub>Li</sub>, u<sub>Li</sub>)}, where s<sub>j</sub> ∈ S, 1 ≤ j ≤ Li, is a unique speaker and u<sub>j</sub> = (w<sub>1</sub>, ..., w<sub>lj</sub>) is the tokenized utterance for speaker s<sub>j</sub>. 
 
 And For each meeting X<sub>i</sub>, we have the following labels:
 
-a) <ins>Category</ins> of the ith meeting as c<sub>i</sub>, C={c<sub>1</sub>, c<sub>2</sub>...c<sub>K</sub>}, where c<sub>i</sub> ∈ C, K = Total number of categories
+a) <ins>Human-labelled category</ins> of the ith meeting as c<sub>i</sub>, C={c<sub>1</sub>, c<sub>2</sub>...c<sub>K</sub>}, where c<sub>i</sub> ∈ C, K = Total number of categories
 
 b) <ins>Human-marked important/unimportant utterances</ins> for each speaker of the ith meeting as I<sub>i</sub>, I<sub>i</sub> = {(s<sub>1</sub>, u<sub>1</sub>, z<sub>1</sub>),(s<sub>2</sub>, u<sub>2</sub>, z<sub>2</sub>), ...,(s<sub>Li</sub>, u<sub>Li</sub>, z<sub>Li</sub>)}, where z<sub>j</sub> ∈ {0,1}, 1 ≤ j ≤ Li is a speaker utterance being important or not, 0 = UnImportant, 1 = Important
 
