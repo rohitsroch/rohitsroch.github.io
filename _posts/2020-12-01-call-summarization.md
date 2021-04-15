@@ -13,7 +13,7 @@ Let's now deep dive into problem definition in detail:
 
 Given a call audio between *Agent Speaker* and *Customer Speaker* (or multiple speaker), goal is to generate a domain adapted abstractive summary such that it should be concise and should capture the important facts corresponding each speaker in the call. 
 
-Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are $X = {X_1, X_2, ...X_N}$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
+Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are $$ X = {X_1, X_2, ...X_N} $$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
 Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S, 1 ≤ j ≤ L_i$, is a speaker and $u_j = (w_1, ..., w_{l_j})$ is the tokenized utterance for speaker $s_j$. 
 
 And For each meeting $X_i$, we have the following labels:
