@@ -4,6 +4,7 @@ title: Meeting Call Transcript Summarization
 summary: Domain adapted Abstractive Summarization of meeting call transcript.
 featured-img: call-summarization/call-summarization-card
 categories: NLP
+mathjax: true # add this line in order to enable MathJax in the post
 ---
 
 Recently, I worked on a research use case based on natural language generation (NLG) in which the goal was to generate an speaker specific abstractive summary in a controlled manner. As we know that when we talk about text summarization, there are two fundamental approaches i.e **Extractive Summarization** in which idea is to identify important sections of the call transcript with respect to each speaker and generating them verbatim producing a subset of the sentences from the original text; while in **Abstractive Summarization** idea is to generate a short and concise summary that captures the salient ideas of the source text. The generated summaries potentially contain new phrases and sentences that may not appear in the source text. So abstractive summarization is more advanced as well as feels more human-like. Also, this blog post is a part of series of blog posts in which I will cover everything in detail and specifically how we solved this problem. 
@@ -13,7 +14,7 @@ Let's now deep dive into problem definition in detail:
 
 Given a call audio between *Agent Speaker* and *Customer Speaker* (or multiple speaker), goal is to generate a domain adapted abstractive summary such that it should be concise and should capture the important facts corresponding each speaker in the call. 
 
-Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are $$ X = {X_1, X_2, ...X_N} $$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
+Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are $X = {X_1, X_2, ...X_N}$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
 Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S, 1 ≤ j ≤ L_i$, is a speaker and $u_j = (w_1, ..., w_{l_j})$ is the tokenized utterance for speaker $s_j$. 
 
 And For each meeting $X_i$, we have the following labels:
