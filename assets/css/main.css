@@ -1575,10 +1575,10 @@ table td {
 
 
 .hero__wrap .hero__download{
-    font-size: 14px;
+    font-size: 13px;
     color: #fff;
     border: 1px solid #fff;
-    padding: 15px 45px;
+    padding: 12px 35px;
     cursor:pointer;
     display: inline-block;
     -webkit-border-radius: 3px;
