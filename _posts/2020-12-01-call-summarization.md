@@ -13,20 +13,18 @@ Let's now deep dive into problem definition in detail:
 
 Given a call audio between *Agent Speaker* and *Customer Speaker* (or multiple speaker), goal is to generate a domain adapted abstractive summary such that it should be concise and should capture the important facts corresponding each speaker in the call. 
 
-Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are X = {X<sub>1</sub>, X<sub>2</sub>, ...X<sub>N</sub>}. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
-Thus, X<sub>i</sub> = {(s<sub>1</sub>, u<sub>1</sub>),(s<sub>2</sub>, u<sub>2</sub>), ...,(s<sub>Li</sub>, u<sub>Li</sub>)}, where s<sub>j</sub> ∈ S, 1 ≤ j ≤ Li, is a speaker and u<sub>j</sub> = (w<sub>1</sub>, ..., w<sub>lj</sub>) is the tokenized utterance for speaker s<sub>j</sub>. 
+Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are $X = {X_1, X_2, ...X_N}$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
+Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S, 1 ≤ j ≤ L_i$, is a speaker and $u_j = (w_1, ..., w_{l_j})$ is the tokenized utterance for speaker $s_j$. 
 
-And For each meeting X<sub>i</sub>, we have the following labels:
+And For each meeting $X_i$, we have the following labels:
 
-a) <ins>Human-labelled speaker tag</ins> for each speaker utterances of the ith meeting as T<sub>i</sub>, T<sub>i</sub> = {(s<sub>1</sub>, u<sub>1</sub>, t<sub>1</sub>),(s<sub>2</sub>, u<sub>2</sub>, t<sub>2</sub>), ...,(s<sub>Li</sub>, u<sub>Li</sub>, t<sub>Li</sub>)}, where t<sub>j</sub> ∈ {Agent, Customer}, 1 ≤ j ≤ Li is a speaker utterance being labelled as either agent or customer
+a) <ins>Human-labelled speaker tag</ins> for each speaker utterances of the $i^{th}$ meeting as $T_i$, $T_i = {(s_1, u_1, t_1),(s_2, u_2, t_2), ...,(s_{L_i}, u_{L_i}, t_{L_i})}$, where $t_j ∈$ {Agent, Customer}, $1 ≤ j ≤ L_i$ is a speaker utterance being labelled as either agent or customer
 
-d) <ins>Human-labelled category</ins> of the ith meeting as c<sub>i</sub>, C={c<sub>1</sub>, c<sub>2</sub>...c<sub>K</sub>}, where c<sub>i</sub> ∈ C, K = Total number of categories
+d) <ins>Human-labelled category</ins> of the $i^{th}$ meeting as $c_i$, $C$ = {$c_1, c_2...c_K$}, where $c_i ∈ C$, $K$ = Total number of categories
 
-c) <ins>Human-marked important/unimportant utterances</ins> for each speaker of the ith meeting as I<sub>i</sub>, I<sub>i</sub> = {(s<sub>1</sub>, u<sub>1</sub>, z<sub>1</sub>),(s<sub>2</sub>, u<sub>2</sub>, z<sub>2</sub>), ...,(s<sub>Li</sub>, u<sub>Li</sub>, z<sub>Li</sub>)}, where z<sub>j</sub> ∈ {0,1}, 1 ≤ j ≤ Li is a speaker utterance being marked as important or not, 0 = UnImportant, 1 = Important
+c) <ins>Human-marked important/unimportant utterances</ins> for each speaker of the $i^{th}$ meeting as $I_i$, $I_i = {(s_1, u_1, z_1),(s_2, u_2, z_2), ...,(s_{L_i}, u_{L_i}, z_{L_i})}$, where $z_j ∈$ {$0,1$}, $1 ≤ j ≤ L_i$ is a speaker utterance being marked as important or not, $0$ = UnImportant, $1$ = Important
 
-d) <ins>Human-labelled Summary</ins> of ith meeting as Y<sub>i</sub> for both the speakers i.e Y<sub>i</sub> = {Y<sub>iA</sub>, Y<sub>iC</sub>}, where Y<sub>iA</sub> = (w'<sub>1</sub>, ..., w'<sub>A</sub>) is a sequence of tokens for agent and Y<sub>iC</sub> = (w''<sub>1</sub>, ..., w''<sub>C</sub>) is a sequence of tokens for customer
-
-(Add diagram for sample data)
+d) <ins>Human-labelled Summary</ins> of $i^{th}$ meeting as $Y_i$ for both the speakers i.e $Y_i =$ {$Y_{i_A}, Y_{i_C}$}, where $Y_{i_A} = (w'_1, ..., w'_A)$ is a sequence of tokens for agent and $Y_{i_C} = (w''_1, ..., w''_C)$ is a sequence of tokens for customer
 
 ## How its helpful ?
 
@@ -74,10 +72,50 @@ During the early days of the usecase, we tried several methods just to check the
 
 ![Pointer-Generator-Network]({{ site.url }}{{ site.baseurl }}/assets/img/posts/call-summarization/pointer-generator-network.png)
 
-Above is the architecture of pointer generator network, 
+Above Figure-3 is a pointer generator network which is hybrid between baseline (sequence to sequence network with attention) and pointer network as it facilitates copying words from the source text via pointing, which improves accuracy and handling of OOV words, while retaining the ability to generate new words.
 
+a) Attention distribution (over source positions)
 
+   $e_i^j= w^T tanh(W_h h_i + W_s s_j + b_{attn})$ , 
+   
+   Here, $h_i$ is the encoder states and $s_j$ is the decoder states
+
+   $p^j = softmax(e_j)$
+
+   Here, $p^j$ represents the attention probability distribution that $j^{th}$ position in decoder pays to all the moments in encoder (i.e what all encoder moments are given more weightage while decoding for $j^{th}$ position)
+
+b) Vocabulary distribution (generative model)
+   
+   $v_j = \sum_{i} p_i^j h_i$
+
+   Here, $v_j$ is a context vector for $j^{th}$ position of decoder
+
+   $p_{vocab} = softmax(V'(V[s_j, v_j] + b) + b')$
+
+   Here, $p_{vocab}$ is a vocabulary probability distribution for $j^{th}$ position of decoder
+
+c) Copy distribution (over words from source)
+   
+   $p_{copy}(w) = \sum_{i:x_i=w} p_i^j$ 
+
+d) Final distribution
+    
+   $p_{final} = p_{gen} p_{vocab} + (1 - p_{gen}) p_{copy}$
+
+   Here, $p_{gen} = \sigma(w_v^T v_j + w_s^T s_j + w_x^T y_{j-1} + b_{gen})$, $p_{gen} ∈ [0,1]$ 
+
+So, in pointer generator network the final distribution depends on $p_{gen}$ which is used as a soft switch to choose between generating a word from the vocabulary by sampling from $p_{vocab}$, or copying a word from the input sequence (source text) by sampling from the copy distribution $p_{copy}$. Note that in case of OOV token, $p_{vocab}$ will be zero which means the it can copy word from input sequence (source text) and this is how it solves the issue of predicting UNK tokens in the predicted summary. 
+
+During training goal is minimize the negative of log likelihood of predicting the summary tokens as following
+
+   $Loss = - 1/J \sum_{j=1}^{j} log p_{final}(y_j)$
+
+Overall pointer generator network showed that its sometimes beneficial to copy from input sequence (source text). Due to this it beat baseline network, but still due to copy distribution summaries would sometimes contain repetitions which was further fixed by coverage mechanism.
+   
 ![HMNet]({{ site.url }}{{ site.baseurl }}/assets/img/posts/call-summarization/hmnet.png)
+
+HMNet (Hierarchical Network for Abstractive Meeting Summarization) is a latest work which tries to solve exactly the same problem which we were trying to solve as it is specially for meeting call transcripts and based on state of the art Transformer architecture. It also solves some of the challenges mentioned above.
+
 
 ## Solution Architecture
 
