@@ -25,7 +25,7 @@ d) <ins>Human-labelled category</ins> of the $i^{th}$ meeting as $c_i$, $C$ = {$
 
 c) <ins>Human-marked important/unimportant utterances</ins> for each speaker of the $i^{th}$ meeting as $I_i$, $I_i = {(s_1, u_1, z_1),(s_2, u_2, z_2), ...,(s_{L_i}, u_{L_i}, z_{L_i})}$, where $z_j ∈$ {$0,1$}, $1 ≤ j ≤ L_i$ is a speaker utterance being marked as important or not, $0$ = UnImportant, $1$ = Important
 
-d) <ins>Human-labelled Summary</ins> of $i^{th}$ meeting as $Y_i$ for both the speakers i.e $Y_i =$ {$Y_{i_A}, Y_{i_C}$}, where $Y_{i_A} =$ $(w'_1, ..., w'_A)$ is a sequence of tokens for agent and $Y_{i_C} =$ $(w''_1, ..., w''_C)$ is a sequence of tokens for customer
+d) <ins>Human-labelled Summary</ins> of $i^{th}$ meeting as $Y_i$ for both the speakers i.e $Y_i =$ {$Y_{i_A}, Y_{i_C}$}, where $Y_{i_A} = (w_1^{\prime}, ..., w_A^{\prime})$ is a sequence of tokens for agent and $Y_{i_C} = (w_1^{\prime\prime}, ..., w_C^{\prime\prime})$ is a sequence of tokens for customer
 
 ## How its helpful ?
 
