@@ -9,7 +9,8 @@ mathjax: true # add this line in order to enable MathJax in the post
 
 Recently, I worked on a research use case based on natural language generation (NLG) in which the goal was to generate an speaker specific abstractive summary in a controlled manner. As we know that when we talk about text summarization, there are two fundamental approaches i.e **Extractive Summarization** in which idea is to identify important sections of the call transcript with respect to each speaker and generating them verbatim producing a subset of the sentences from the original text; while in **Abstractive Summarization** idea is to generate a short and concise summary that captures the salient ideas of the source text. The generated summaries potentially contain new phrases and sentences that may not appear in the source text. So abstractive summarization is more advanced as well as feels more human-like. Also, this blog post is a part of series of blog posts in which I will cover everything in detail and specifically how we solved this problem. 
 
-## Problem Statement
+## Problem Definition
+
 Let's now deep dive into problem definition in detail:
 
 Given a call audio between *Agent Speaker* and *Customer Speaker* (or multiple speaker), goal is to generate a domain adapted abstractive summary such that it should be concise and should capture the important facts corresponding each speaker in the call. 
@@ -44,7 +45,7 @@ The solution on which I worked was specifically build for a Travel and Hospitali
 
 ## Challenges
 
-Now, that you have understanding of how this problem is kind of a big deal. But when we started working on this usecase, one thing was sure that we can't just directly use some blackbox model to generate these summaries. Below are some of th important challenges that our solution tries to address to some extent
+Now, that you have understanding of how this problem is kind of a big deal. But when we started working on this usecase, one thing was sure that we can't just directly use some blackbox model to generate these summaries. Below are some of the important challenges that our solution tries to address to some extent
 
 1. <ins>Long nature of transcripts:</ins> Since, meeting call transcripts are always long which means that usual conversation would contain around 2000-4000 tokens. So, How we can incoperate this long nature of the transcript while designing the architecture.
    
@@ -111,19 +112,53 @@ During training goal is minimize the negative of log likelihood of predicting th
 
    $Loss = - 1/J \sum_{j=1}^{j} log p_{final}(y_j)$
 
-Overall pointer generator network showed that its sometimes beneficial to copy from input sequence (source text). Due to this it beat baseline network, but still due to copy distribution summaries would sometimes contain repetitions which was further fixed by coverage mechanism.
+Overall pointer generator network showed that its sometimes beneficial to copy from input sequence (source text). Due to this it beat baseline network, but still due to copy distribution summaries would sometimes contain repetitions which was further fixed by coverage mechanism. Please refer to research paper for more details
    
 ![HMNet]({{ site.url }}{{ site.baseurl }}/assets/img/posts/call-summarization/hmnet.png)
 
-HMNet (Hierarchical Network for Abstractive Meeting Summarization) is a latest work which tries to solve exactly the same problem which we were trying to solve as it is specially for meeting call transcripts and based on state of the art Transformer architecture. It also solves some of the challenges mentioned above.
+HMNet (Hierarchical Network for Abstractive Meeting Summarization) is a latest work that tries to solve exactly the same problem which we were trying to solve as it is specially for meeting call transcripts and based on state of the art Transformer architecture. It also solves some of the challenges mentioned above.
 
+Above Figure-1 is HMNet is based on the encoder-decoder transformer structure, and its goal is to maximize the conditional probability of meeting summary $Y$ given transcript $X$ and network parameters $θ: P(Y |X; θ)$.
+
+As we know that the vanilla transformer has the attention mechanism, its computational complexity grows to quadratic as the input length increases. Thus, it struggles to handle very long sequences, e.g 2000-3000 tokens. Also, meeting call transcripts are always long but we can notice that the each transcript comes with a natural multiturn structure with a reasonable number of turns e.g around 100-200 turns. Therefore  Therefore, HMNet employ a two-level transformer structure to encode the meeting transcript as follows.
+
+a) Word Level Transformer
+
+The encoder part consists of Word-level Transformer that  processes the token sequence of one turn in the meeting. It encode each token in one turn using a trainable embedding matrix $D$. Thus, the $j^{th}$ token in the $i^{th}$ turn, $w_{i,j}$ , is associated with a uniform length vector $D(w_{i,j} ) = g_{i,j}$.  To incorporate syntactic and semantic information, we also train two embedding matrices to represent the part-of-speech (POS) and entity (ENT) tags. Therefore, the token $w_{i,j}$ is represented by the vector $x_{i,j} = [g_{i,j}; POS_{i,j}; ENT_{i,j}]$. Note that a special token is added as $w_{i,0}=[BOS]$ before the sequence to represent the beginning of a turn. Then, the output of word-level transformer gives $x_{i,j}$, i.e contextualized representation of $j^{th}$ word in $i^{th}$ turn, where $1 ≤ j ≤ L_i$
+and $1 ≤ i ≤ M$, $L_i$ = Number of tokens for $i^{th}$ turn, M = Number of Turns
+
+b) Turn Level Transformer
+
+As we know that the meeting call transcripts have this hierarchical structure such that each participant has different semantic styles and viewpoints e.g., program manager, industrial designer. Therefore, the model has to take the speaker’s information into account while generating summaries. To incorporate the participant's information, idea is to integrate the speaker role component. So, a trainable matrix is considered as $R$ such that for each role, a vector is trained to represent it as a fixed-length vector $r_p$, $1 ≤ p ≤ P$, where $P$ is the number of roles. 
+
+The turn-level transformer processes the information of all M turns in a meeting call transcript.  To represent the $i^{th}$  turn, the output embedding of the special token $[BOS]$ from the word-level transformer is used which is concatenated with the role vector of the speaker as $p_i$ for the $i^{th}$ turn. Then, the output of turn-level transformer gives $m_i$ i.e contextualized representation of $i^{th}$ turn, {$m_1, m2, ...m_M$}, M = Number of Turns
+
+c) Decoder 
+
+The decoder is a transformer to generate the summary tokens. The input to the decoder transformer
+contains the k − 1 previously generated summary tokens $\hat{y}_1, ..., \hat{y}_{k−1}$. Each token is represented by a vector using the same embedding matrix $D$ as in the encoder. Also, each decoder transformer block includes two cross-attention layers. After self-attention, the embeddings first attend with token-level outputs ${{[x_{i,j}]}_{i=1}^{M}}_{j=1}^{L_i}$ and then with turn-level outputs {$m_1, m2, ...m_M$}, each followed by layer-norm. This makes the model attend to different parts of the inputs. Then, the output of decoder gives {$v_1,v2, ...,v_{k-1}$}
+To predict the next token $\hat{y}_k$, we reuse the weight of embedding matrix $D$ to decode $v_{k−1}$ into a probability distribution over the vocabulary:
+  
+  $P(\hat{y}_k|\hat{y}_{<k}, X) = softmax(v_{k−1}D^T)$
+
+Finally, during training the goal is to minimize the negative of log likelihood of predicting the summary tokens as following
+   
+   $Loss(θ) = - 1/n \sum_{k=1}^{n} logP(\hat{y}_k|\hat{y}_{<k}, X)$
+
+Teacher forcing is used while training decoder i.e the decoder takes ground-truth summary tokens as input. During inference, beam search method is used to select the best candidate. The search
+starts with the special token $[BEGIN]$ and a commonly used trigram blocking search is followed, if a candidate word would create a trigram that already exists in the previously generated sequence of the beam then forcibly set the word’s probability to 0. Finally, the summary with the highest average log-likelihood per token is selected.
+
+Overall HMNet set a new benchmark on AMI and ICSI datasets with the generated summary. Please refer to research paper for more details
+
+**NOTE**: We actually implemented and tried HMNet as it tries to solve exactly the same challenges, but we faced the issue of exposure bias during inference. This may be because we were training weights from scratch in a few shot settings and we had no HMNet model weights trained already on some public datasets like above.
 
 ## Solution Architecture
 
 ## Results
 
+## UAT
+
 ## Conclusion
 
 ## References
-- All the research papers
    
