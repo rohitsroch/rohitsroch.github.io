@@ -136,7 +136,7 @@ The turn-level transformer processes the information of all M turns in a meeting
 c) Decoder 
 
 The decoder is a transformer to generate the summary tokens. The input to the decoder transformer
-contains the k − 1 previously generated summary tokens $\hat{y}_1, ..., \hat{y}_{k−1}$. Each token is represented by a vector using the same embedding matrix $D$ as in the encoder. Also, each decoder transformer block includes two cross-attention layers. After self-attention, the embeddings first attend with token-level outputs ${{[x_{i,j}]}_{i=1}^{M}}_{j=1}^{L_i}$ and then with turn-level outputs {$m_1, m2, ...m_M$}, each followed by layer-norm. This makes the model attend to different parts of the inputs. Then, the output of decoder gives {$v_1,v2, ...,v_{k-1}$}
+contains the k − 1 previously generated summary tokens $\hat{y}_1, ..., \hat{y}_{k−1}$. Each token is represented by a vector using the same embedding matrix $D$ as in the encoder. Also, each decoder transformer block includes two cross-attention layers. After self-attention, the embeddings first attend with token-level outputs ${[x_{i,j}]_{i=1}^{M}}_{j=1}^{L_i}$ and then with turn-level outputs {$m_1, m2, ...m_M$}, each followed by layer-norm. This makes the model attend to different parts of the inputs. Then, the output of decoder gives {$v_1,v2, ...,v_{k-1}$}
 To predict the next token $\hat{y}_k$, we reuse the weight of embedding matrix $D$ to decode $v_{k−1}$ into a probability distribution over the vocabulary:
   
   $P(\hat{y}_k|\hat{y}_{<k}, X) = softmax(v_{k−1}D^T)$
