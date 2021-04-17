@@ -78,47 +78,51 @@ Above Figure-3 is a pointer generator network which is hybrid between baseline (
 
 a) Attention distribution (over source positions)
 
-   $e_i^j= w^T tanh(W_h h_i + W_s s_j + b_{attn})$ , 
+   $$e_i^j= w^T tanh(W_h h_i + W_s s_j + b_{attn})$$ 
    
    Here, $h_i$ is the encoder states and $s_j$ is the decoder states
 
-   $p^j = softmax(e_j)$
+   $$p^j = softmax(e_j)$$
 
    Here, $p^j$ represents the attention probability distribution that $j^{th}$ position in decoder pays to all the moments in encoder (i.e what all encoder moments are given more weightage while decoding for $j^{th}$ position)
 
 b) Vocabulary distribution (generative model)
    
-   $v_j = \sum_{i} p_i^j h_i$
+   $$v_j = \sum_{i} p_i^j h_i$$
 
    Here, $v_j$ is a context vector for $j^{th}$ position of decoder
 
-   $p_{vocab} = softmax(V'(V[s_j, v_j] + b) + b')$
+   $$p_{vocab} = softmax(V'(V[s_j, v_j] + b) + b')$$
 
    Here, $p_{vocab}$ is a vocabulary probability distribution for $j^{th}$ position of decoder
 
 c) Copy distribution (over words from source)
    
-   $p_{copy}(w) = \sum_{i:x_i=w} p_i^j$ 
+   $$p_{copy}(w) = \sum_{i:x_i=w} p_i^j$$ 
 
 d) Final distribution
     
-   $p_{final} = p_{gen} p_{vocab} + (1 - p_{gen}) p_{copy}$
+   $$p_{final} = p_{gen} p_{vocab} + (1 - p_{gen}) p_{copy}$$
 
-   Here, $p_{gen} = \sigma(w_v^T v_j + w_s^T s_j + w_x^T y_{j-1} + b_{gen})$, $p_{gen} ∈ [0,1]$ 
+   $$p_{gen} = \sigma(w_v^T v_j + w_s^T s_j + w_x^T y_{j-1} + b_{gen})$$
+
+   Here, $p_{gen} ∈ [0,1]$ 
 
 So, in pointer generator network the final distribution depends on $p_{gen}$ which is used as a soft switch to choose between generating a word from the vocabulary by sampling from $p_{vocab}$, or copying a word from the input sequence (source text) by sampling from the copy distribution $p_{copy}$. Note that in case of OOV token, $p_{vocab}$ will be zero which means the it can copy word from input sequence (source text) and this is how it solves the issue of predicting UNK tokens in the predicted summary. 
 
 During training goal is minimize the negative of log likelihood of predicting the summary tokens as following
 
-   $Loss = - 1/J \sum_{j=1}^{j} log p_{final}(y_j)$
+   $$Loss = - 1/J \sum_{j=1}^{j} log p_{final}(y_j)$$
 
 Overall pointer generator network showed that its sometimes beneficial to copy from input sequence (source text). Due to this it beat baseline network, but still due to copy distribution summaries would sometimes contain repetitions which was further fixed by coverage mechanism. Please refer to research paper for more details
    
 ![HMNet]({{ site.url }}{{ site.baseurl }}/assets/img/posts/call-summarization/hmnet.png)
 
-HMNet (Hierarchical Network for Abstractive Meeting Summarization) is a latest work that tries to solve exactly the same problem which we were trying to solve as it is specially for meeting call transcripts and based on state of the art Transformer architecture. It also solves some of the challenges mentioned above.
+HMNet (Hierarchical Network for Abstractive Meeting Summarization) is a latest work that tries to solve exactly the same problem which we were trying to solve as it is specially for meeting call transcripts and based on state of the art Transformer architecture. It also solves some of the challenges mentioned above. 
 
-Above Figure-1 is HMNet is based on the encoder-decoder transformer structure, and its goal is to maximize the conditional probability of meeting summary $Y$ given transcript $X$ and network parameters $θ: P(Y |X; θ)$.
+Above Figure-1 is HMNet is based on the encoder-decoder transformer structure, and its goal 
+is to maximize the conditional probability of meeting summary $Y$ given transcript $X$ 
+and network parameters ${θ: P(Y|X; θ)}$.
 
 As we know that the vanilla transformer has the attention mechanism, its computational complexity grows to quadratic as the input length increases. Thus, it struggles to handle very long sequences, e.g 2000-3000 tokens. Also, meeting call transcripts are always long but we can notice that the each transcript comes with a natural multiturn structure with a reasonable number of turns e.g around 100-200 turns. Therefore  Therefore, HMNet employ a two-level transformer structure to encode the meeting transcript as follows.
 
@@ -136,14 +140,16 @@ The turn-level transformer processes the information of all M turns in a meeting
 c) Decoder 
 
 The decoder is a transformer to generate the summary tokens. The input to the decoder transformer
-contains the k − 1 previously generated summary tokens $\hat{y}_1, ..., \hat{y}_{k−1}$. Each token is represented by a vector using the same embedding matrix $D$ as in the encoder. Also, each decoder transformer block includes two cross-attention layers. After self-attention, the embeddings first attend with token-level outputs ${[x_{i,j}]_{i=1}^{M}}_{j=1}^{L_i}$ and then with turn-level outputs {$m_1, m2, ...m_M$}, each followed by layer-norm. This makes the model attend to different parts of the inputs. Then, the output of decoder gives {$v_1,v2, ...,v_{k-1}$}
-To predict the next token $\hat{y}_k$, we reuse the weight of embedding matrix $D$ to decode $v_{k−1}$ into a probability distribution over the vocabulary:
-  
-  $P(\hat{y}_k|\hat{y}_{<k}, X) = softmax(v_{k−1}D^T)$
+contains the $k − 1$ previously generated summary tokens ${\hat{y_1} ,...,\hat{y}_{k-1}}$. Each token is represented by a vector using the same embedding matrix $D$ as in the encoder. Also, each decoder transformer block includes two cross-attention layers.
+
+After self-attention, the embeddings first attend with token-level outputs $[x_{i,j}]$ and then with turn-level outputs {$m_1, m2, ...m_M$}, each followed by layer-norm. This makes the model attend to different parts of the inputs. Then, the output of decoder gives {$v_1,v2, ...,v_{k-1}$} To predict the next token $\hat{y_{k}}$, we reuse the weight of embedding matrix $D$ to decode $v_{k−1}$ into a probability distribution over the vocabulary: 
+
+ $$P(\hat{y}_{k}|\hat{y}_{<k}, X) = softmax(v_{k−1}D^T)$$
+
 
 Finally, during training the goal is to minimize the negative of log likelihood of predicting the summary tokens as following
-   
-   $Loss(θ) = - 1/n \sum_{k=1}^{n} logP(\hat{y}_k|\hat{y}_{<k}, X)$
+
+ $$Loss(θ) = - 1/n \sum_{k=1}^{n} logP(\hat{y}_{k}|\hat{y}_{<k}, X)$$
 
 Teacher forcing is used while training decoder i.e the decoder takes ground-truth summary tokens as input. During inference, beam search method is used to select the best candidate. The search
 starts with the special token $[BEGIN]$ and a commonly used trigram blocking search is followed, if a candidate word would create a trigram that already exists in the previously generated sequence of the beam then forcibly set the word’s probability to 0. Finally, the summary with the highest average log-likelihood per token is selected.
