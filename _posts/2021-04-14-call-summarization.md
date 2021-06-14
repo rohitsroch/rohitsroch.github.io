@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Meeting Call Transcript Summarization
-summary: Domain adapted Abstractive Summarization of meeting call transcript.
+title: Domain Adapted Abstractive Speech Summarization using Transfer Learning
+summary: Domain adapted Abstractive Speech Summarization of meeting call transcript using transfer learning.
 featured-img: call-summarization/call-summarization-card
 categories: NLP
 mathjax: true # add this line in order to enable MathJax in the post
@@ -115,7 +115,9 @@ During training goal is minimize the negative of log likelihood of predicting th
    $$Loss = - 1/J \sum_{j=1}^{j} log p_{final}(y_j)$$
 
 Overall pointer generator network showed that its sometimes beneficial to copy from input sequence (source text). Due to this it beat baseline network, but still due to copy distribution summaries would sometimes contain repetitions which was further fixed by coverage mechanism. Please refer to research paper for more details
-   
+
+<hr/>
+
 ![HMNet]({{ site.url }}{{ site.baseurl }}/assets/img/posts/call-summarization/hmnet.png)
 
 HMNet (Hierarchical Network for Abstractive Meeting Summarization) is a latest work that tries to solve exactly the same problem which we were trying to solve as it is specially for meeting call transcripts and based on state of the art Transformer architecture. It also solves some of the challenges mentioned above. 
@@ -167,4 +169,7 @@ Overall HMNet set a new benchmark on AMI and ICSI datasets with the generated su
 ## Conclusion
 
 ## References
-   
+
+1. Abigail See, Peter J. Liu, Christopher D. Manning. 2017. Get To The Point: Summarization with Pointer-Generator Networks
+
+2. Chenguang Zhu, Ruochen Xu, Michael Zeng, Xuedong Huang. 2020. A Hierarchical Network for Abstractive Meeting Summarization with Cross-Domain Pretraining.
