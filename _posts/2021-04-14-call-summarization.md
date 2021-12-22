@@ -23,9 +23,16 @@ Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S,
 
 And For each audio transcript $*X_{i}*$, we have the following labels:
 
-1. Human-labeled speaker tag for each speaker utterances of the $*i^{th}*$ audio transcript as $T_i$, where $T_i = {(s_1, u_1, t_1),(s_2, u_2, t_2), ...,(s_{L_i}, u_{L_i}, t_{L_i})}$, and $t_j ∈$ {$Speaker1, Speaker2 ...$}, $1 ≤ j ≤ L_i$ is a speaker utterance 
-2. Human-marked important/unimportant utterances for each speaker of the $i^{th}$ audio transcript as $I_i$ , where $I_i = {(s_1, u_1, z_1),(s_2, u_2, z_2), ...,(s_{L_i}, u_{L_i}, z_{L_i})}$, and $z_j ∈$ {$0,1$}, $1 ≤ j ≤ L_i$ is a speaker utterance being marked as important or not, $0$ = UnImportant, $1$ = Important **(Optional)**
-3. Human-labeled Summary of the $*i^{th}*$ audio transcript as $Y_i$ where $Y_{i} = (w_1^{\prime}, ..., w_y^{\prime})$ is a sequence of tokens
+a) <ins>Human-labelled speaker tag</ins> for each speaker utterances of the $i^{th}$ meeting as $T_i$, $T_i = {(s_1, u_1, t_1),(s_2, u_2, t_2), ...,(s_{L_i}, u_{L_i}, t_{L_i})}$, where $t_j ∈$ {Agent, Customer}, $1 ≤ j ≤ L_i$ is a speaker utterance being labelled as either agent or customer
+Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S, 1 ≤ j ≤ L_i$, is a speaker and $u_j = (w_1, ..., w_{l_j})$  is the tokenized utterance for speaker $s_j$.
+
+d) <ins>Human-labelled category</ins> of the $i^{th}$ meeting as $c_i$, $C$ = {$c_1, c_2...c_K$}, where $c_i ∈ C$, $K$ = Total number of categories
+And For each audio transcript $*X_{i}*$, we have the following labels:
+
+c) <ins>Human-marked important/unimportant utterances</ins> for each speaker of the $i^{th}$ meeting as $I_i$, $I_i = {(s_1, u_1, z_1),(s_2, u_2, z_2), ...,(s_{L_i}, u_{L_i}, z_{L_i})}$, where $z_j ∈$ {$0,1$}, $1 ≤ j ≤ L_i$ is a speaker utterance being marked as important or not, $0$ = UnImportant, $1$ = Important **(Optional)**
+
+d) <ins>Human-labelled Summary</ins> of $i^{th}$ meeting as $Y_i$ for both the speakers i.e $Y_i =$ {$Y_{i_A}, Y_{i_C}$}, where $Y_{i_A} = (w_1^{\prime}, ..., w_A^{\prime})$ is a sequence of tokens for agent and $Y_{i_C} = (w_1^{\prime\prime}, ..., w_C^{\prime\prime})$ is a sequence of tokens for customer
+
 
 ## How its helpful ?
 
