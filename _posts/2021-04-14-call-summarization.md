@@ -1,38 +1,37 @@
 ---
 layout: post
-title: Domain Adapted Abstractive Speech Summarization using Transfer Learning
-summary: Domain adapted Abstractive Speech Summarization of meeting call transcript using transfer learning.
+title: Abstractive Speech Summarization of Meeting Calls
+summary: Abstractive Speech Summarization of meeting call using transfer learning.
 featured-img: call-summarization/call-summarization-card
 categories: NLP
 mathjax: true # add this line in order to enable MathJax in the post
 ---
 
-Recently, I worked on a research use case based on natural language generation (NLG) in which the goal was to generate an speaker specific abstractive summary in a controlled manner. As we know that when we talk about text summarization, there are two fundamental approaches i.e **Extractive Summarization** in which idea is to identify important sections of the call transcript with respect to each speaker and generating them verbatim producing a subset of the sentences from the original text; while in **Abstractive Summarization** idea is to generate a short and concise summary that captures the salient ideas of the source text. The generated summaries potentially contain new phrases and sentences that may not appear in the source text. So abstractive summarization is more advanced as well as feels more human-like. Also, this blog post is a part of series of blog posts in which I will cover everything in detail and specifically how we solved this problem. 
+Abstractive Summarization of Dialogue is a task in which, the goal is to generate an abstractive summary from the dialogue transcript. As we know that when we talk about summarization, there are two ways i.e **Extractive Summarization** in which idea is to identify important sections of the audio transcript with respect to each speaker and generating them verbatim producing a subset of the sentences from the original text; while in **Abstractive Summarization,** idea is to generate a short and concise summary that captures the salient ideas of the source text. The generated summaries potentially contain new phrases and sentences that may not appear in the source text. So abstractive summarization is more advanced as well as feels more human-like. 
 
 ## Problem Definition
 
-Let's now deep dive into problem definition in detail:
+Let’s now deep dive into problem definition in detail:
 
-Given a call audio between *Agent Speaker* and *Customer Speaker* (or multiple speaker), goal is to generate a domain adapted abstractive summary such that it should be concise and should capture the important facts corresponding each speaker in the call. 
+Given audio among multiple speakers, the goal is to generate a domain-adapted abstractive summary such that it should be concise and should capture the important facts corresponding to each speaker in the call audio.
 
-Mathematically, we can formulate problem of domain adapted meeting call summarization as follows. The input to our AI system consists of meeting call transcripts X and S unique speakers (in our case it's 2) and we have N meetings in total. So, the transcripts are $X = {X_1, X_2, ...X_N}$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker. 
-Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S, 1 ≤ j ≤ L_i$, is a speaker and $u_j = (w_1, ..., w_{l_j})$ is the tokenized utterance for speaker $s_j$. 
+Mathematically, we can formulate the problem as follows. 
 
-And For each meeting $X_i$, we have the following labels:
+The input to our AI system consists of audio transcripts X with S unique speakers and we have N meetings in total. So, the transcripts are $X = {X_1, X_2, ...X_N}$. Here each transcript consists of multiple turns, where each turn is the utterance of a speaker.
 
-a) <ins>Human-labelled speaker tag</ins> for each speaker utterances of the $i^{th}$ meeting as $T_i$, $T_i = {(s_1, u_1, t_1),(s_2, u_2, t_2), ...,(s_{L_i}, u_{L_i}, t_{L_i})}$, where $t_j ∈$ {Agent, Customer}, $1 ≤ j ≤ L_i$ is a speaker utterance being labelled as either agent or customer
+Thus, $X_i = {(s_1, u_1),(s_2, u_2), ...,(s_{L_i}, u_{L_i})}$, where $s_j ∈ S, 1 ≤ j ≤ L_i$, is a speaker and $u_j = (w_1, ..., w_{l_j})$  is the tokenized utterance for speaker $s_j$.
 
-d) <ins>Human-labelled category</ins> of the $i^{th}$ meeting as $c_i$, $C$ = {$c_1, c_2...c_K$}, where $c_i ∈ C$, $K$ = Total number of categories
+And For each audio transcript $*X_{i}*$, we have the following labels:
 
-c) <ins>Human-marked important/unimportant utterances</ins> for each speaker of the $i^{th}$ meeting as $I_i$, $I_i = {(s_1, u_1, z_1),(s_2, u_2, z_2), ...,(s_{L_i}, u_{L_i}, z_{L_i})}$, where $z_j ∈$ {$0,1$}, $1 ≤ j ≤ L_i$ is a speaker utterance being marked as important or not, $0$ = UnImportant, $1$ = Important
-
-d) <ins>Human-labelled Summary</ins> of $i^{th}$ meeting as $Y_i$ for both the speakers i.e $Y_i =$ {$Y_{i_A}, Y_{i_C}$}, where $Y_{i_A} = (w_1^{\prime}, ..., w_A^{\prime})$ is a sequence of tokens for agent and $Y_{i_C} = (w_1^{\prime\prime}, ..., w_C^{\prime\prime})$ is a sequence of tokens for customer
+1. Human-labeled speaker tag for each speaker utterances of the $*i^{th}*$ audio transcript as $T_i$, where $T_i = {(s_1, u_1, t_1),(s_2, u_2, t_2), ...,(s_{L_i}, u_{L_i}, t_{L_i})}$, and $t_j ∈$ {$Speaker1, Speaker2 ...$}, $1 ≤ j ≤ L_i$ is a speaker utterance 
+2. Human-marked important/unimportant utterances for each speaker of the $i^{th}$ audio transcript as $I_i$ , where $I_i = {(s_1, u_1, z_1),(s_2, u_2, z_2), ...,(s_{L_i}, u_{L_i}, z_{L_i})}$, and $z_j ∈$ {$0,1$}, $1 ≤ j ≤ L_i$ is a speaker utterance being marked as important or not, $0$ = UnImportant, $1$ = Important **(Optional)**
+3. Human-labeled Summary of the $*i^{th}*$ audio transcript as $Y_i$ where $Y_{i} = (w_1^{\prime}, ..., w_y^{\prime})$ is a sequence of tokens
 
 ## How its helpful ?
 
-As we know that customer support is a crucial part of every industry. And by transforming customer service interactions, AI-powered digital solutions are prepared to improve every aspect of business.
+There are many scenarios like meetings, interviews, etc. where dialogue summarization can be helpful but one such important use case is helping Customers Service.
 
-The solution on which I worked was specifically build for a Travel and Hospitality industry.
+As we know that customer support is a crucial part of every industry. And customer service interaction is also a common form of dialogue, which contains questions of the user and solutions of the agent. So, an AI-powered solution can boost service efficiency by automatically creating summaries that would capture important facts.
 
 * Often in Travel and Hospitality industries, Guest Relations department receives a large number of calls from customers asking queries regarding booking, cancellations, billing etc. and a team of agents is expected to address the customer queries and take notes from the conversation with the customer. 
 
@@ -64,13 +63,11 @@ meeting consists of utterances from different speakers and forms a natural multi
 
 ## Previous Research Work
 
-Most of the early abstractive approaches were based on either sentence compression or templates to generate summaries. But in the recent years, we have seen a very significant advancements, thanks to the emergence of neural sequence-to-sequence models. Although, previously sequence-to-sequence models were based on reccurent neural networks which actually set a good benchmark and was considered as state of the art for a long time but by recently, we found that how using Transformers architecture further pushed this benchmark.
+Most of the early abstractive approaches were based on either sentence compression or templates to generate summaries. But in recent years, we have seen very significant advancements, thanks to the emergence of neural sequence-to-sequence models. Although previously sequence-to-sequence models were based on recurrent neural networks which actually set a good benchmark and was considered as state of the art for a long time but by recently, we found that how using Transformers architecture further pushed this benchmark.
 
-Also, initially the area was mostly concerned with headline generation, followed by multi-sentence summarization on news databases (like CNN/DailyMail corpus).
-Further improvements include pointer generator networks which learns whether to generate words or to copy them from the source; attention over time; and hybrid learning objectives.
+Also initially, the area was mostly concerned with headline generation, followed by multi-sentence summarization on news databases (like CNN/DailyMail corpus). Further improvements include pointer generator networks which learn whether to generate words or to copy them from the source; attention over time; and hybrid learning objectives.
 
-During the early days of the usecase, we tried several methods just to check the baseline before we finalized the final solution. Though, these baseline methods  were trained on above (CNN/DailyMail corpus) data like pointer generator network which gave poor results and was hallucinating.
-
+During the early days of the use case, we tried several methods just to check the baseline before we finalized the final solution. Though, these baseline methods were trained on above (CNN/DailyMail corpus) data like pointer generator network which gave poor results and was hallucinating.
 
 ![Pointer-Generator-Network]({{ site.url }}{{ site.baseurl }}/assets/img/posts/call-summarization/pointer-generator-network.png)
 
@@ -158,18 +155,16 @@ starts with the special token $[BEGIN]$ and a commonly used trigram blocking sea
 
 Overall HMNet set a new benchmark on AMI and ICSI datasets with the generated summary. Please refer to research paper for more details
 
-**NOTE**: We actually implemented and tried HMNet as it tries to solve exactly the same challenges, but we faced the issue of exposure bias during inference. This may be because we were training weights from scratch in a few shot settings and we had no HMNet model weights trained already on some public datasets like above.
-
-## Solution Architecture
-
-## Results
-
-## UAT
-
-## Conclusion
-
 ## References
 
 1. Abigail See, Peter J. Liu, Christopher D. Manning. 2017. Get To The Point: Summarization with Pointer-Generator Networks
 
-2. Chenguang Zhu, Ruochen Xu, Michael Zeng, Xuedong Huang. 2020. A Hierarchical Network for Abstractive Meeting Summarization with Cross-Domain Pretraining.
+2. Chenguang Zhu, Ruochen Xu, Michael Zeng, Xuedong Huang. 2020. A Hierarchical Network for Abstractive audio Summarization with Cross-Domain Pretraining.
+
+3. Chunyi Liu, Peng Wang, Jiang Xu, Zang Li, Jieping Ye. 2019. Automatic Dialogue Summary Generation for Customer Service
+
+4. Yulong Chen , Yang Liu, Liang Chen, Yue Zhang. 2021. DIALOGSUM: A Real-Life Scenario Dialogue Summarization Dataset
+
+5. Chenguang Zhu , Yang Liu , Jie Mei, Michael Zeng. 2021. MEDIASUM: A Large-scale Media Interview Dataset for Dialogue
+
+6. Chih-Wen Goo, Yun-Nung Chen. 2018. Abstractive Dialogue Summarization with Sentence-Gated Modeling Optimized by Dialogue Acts
