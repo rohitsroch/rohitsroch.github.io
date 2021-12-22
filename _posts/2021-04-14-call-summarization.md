@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Abstractive Speech Summarization of Meeting Calls
-summary: Abstractive Speech Summarization of meeting call using transfer learning.
+summary: Abstractive Speech Summarization of meeting calls using transfer learning.
 featured-img: call-summarization/call-summarization-card
 categories: NLP
 mathjax: true # add this line in order to enable MathJax in the post
 ---
 
-Abstractive Summarization of Dialogue is a task in which, the goal is to generate an abstractive summary from the dialogue transcript. As we know that when we talk about summarization, there are two ways i.e **Extractive Summarization** in which idea is to identify important sections of the audio transcript with respect to each speaker and generating them verbatim producing a subset of the sentences from the original text; while in **Abstractive Summarization,** idea is to generate a short and concise summary that captures the salient ideas of the source text. The generated summaries potentially contain new phrases and sentences that may not appear in the source text. So abstractive summarization is more advanced as well as feels more human-like. 
+Abstractive Speech Summarization is a task in which, the goal is to generate an abstractive summary from the audio dialogue transcript. As we know that when we talk about summarization, there are two ways i.e **Extractive Summarization** in which idea is to identify important sections of the audio transcript with respect to each speaker and generating them verbatim producing a subset of the sentences from the original text; while in **Abstractive Summarization,** idea is to generate a short and concise summary that captures the salient ideas of the source text. The generated summaries potentially contain new phrases and sentences that may not appear in the source text. So abstractive summarization is more advanced as well as feels more human-like. 
 
 ## Problem Definition
 
