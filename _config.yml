@@ -23,6 +23,7 @@ navigation: # Navigation links
   - {name: 'About', link: '/about'}
   - {name: 'Contact', link: '/contact'}
   - {name: 'Categories', link: '/categories'}
+  - {name: 'Publications', link: '/publications'}
   - {name: 'Blog', link: '/#latest-posts'}
 
 tagline: >

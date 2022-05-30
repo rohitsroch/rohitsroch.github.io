@@ -4,9 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Hi there, Welcome to my personal English tech [Blog](https://rohitsroch.github.io/#latest-posts) !
+Hi there, Welcome to my personal tech [Blog](https://rohitsroch.github.io/#latest-posts) !
 
-I'm Rohit Sroch currently working as a AI Scientist at [Course5i - AI Labs](https://www.course5i.com/ai-research/) and formerly worked as Senior Machine Learning Engineer at [Quantiphi](https://www.quantiphi.com/). My interest mainly lies in building AI systems for NLU/NLG and Speech domain. I firmly believe in making AI accessible and useful to everyone.
+I'm Rohit Sroch currently working as a AI Scientist at [Course5 - AI Labs](https://www.course5i.com/ai-labs/) and formerly worked as Senior Machine Learning Engineer at [Quantiphi](https://www.quantiphi.com/). My interest mainly lies in building AI systems for NLU/NLG and Speech domain. I firmly believe in making AI accessible and useful to everyone.
 
 I graduated from Indian Institute of Technology (IIT) Roorkee in 2017 under the discipline of Metallurgical & Materials Engineering. During my undergraduate days, I got my interest in field of Computer Science and decided to persue this as my career path. Due to my rigorous hardwork, I landed a summer internship as a Software Developer at [Practo](https://www.practo.com/). After graduation, I worked as a Software Developer for few months and finally decided to move in the field of Data science. Since then, I have learnt alot and involved in ideating/building solution architecture for some of the most difficult problem statements. Also, I always like to approach any problem with a research mindset.   
 
