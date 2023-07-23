@@ -24,6 +24,7 @@ navigation: # Navigation links
   - {name: 'Contact', link: '/contact'}
   - {name: 'Categories', link: '/categories'}
   - {name: 'Publications', link: '/publications'}
+  - {name: 'Talks', link: '/talks'}
   - {name: 'Blog', link: '/#latest-posts'}
 
 tagline: >
