@@ -6,4 +6,4 @@ featured-img: llm-trends-responsible-ai/llm-trends-responsible-ai-card
 categories: LLMs
 ---
 
-Go to [ODSC Blog Link](https://opendatascience.com/evolving-trends-in-prompt-engineering-for-large-language-models-llms-with-built-in-responsible-ai-practices/) 
+For more details, please refer to [ODSC Blog Link](https://opendatascience.com/evolving-trends-in-prompt-engineering-for-large-language-models-llms-with-built-in-responsible-ai-practices/) 
