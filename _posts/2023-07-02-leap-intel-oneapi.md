@@ -20,3 +20,9 @@ Intel® Neural Compressor and comparing Scikit-Learn Base model vs Intel® Exten
 [![LEAP](https://img.youtube.com/vi/CXkR5tklZm0/0.jpg)](https://www.youtube.com/watch?v=CXkR5tklZm0)
 
 For more details, please refer to [Intel® Developer Spotlight Link](https://community.intel.com/t5/Blogs/Tech-Innovation/Artificial-Intelligence-AI/Building-an-Online-Learning-Platform-using-Intel-AI-Analytics/post/1512256) 
+
+Also Here are a few **News Articles**:
+
+- https://www.businesswireindia.com/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill-85520.html
+- https://www.crn.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/
+- https://www.expresscomputer.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/101004/
