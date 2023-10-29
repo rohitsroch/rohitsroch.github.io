@@ -23,6 +23,6 @@ For more details, please refer to [Intel® Developer Spotlight Link](https://com
 
 Also Here are a few **News Articles**:
 
-- https://www.businesswireindia.com/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill-85520.html
-- https://www.crn.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/
-- https://www.expresscomputer.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/101004/
+- [https://www.businesswireindia.com/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill-85520.html](https://www.businesswireindia.com/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill-85520.html)
+- [https://www.crn.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/](https://www.crn.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/)
+- [https://www.expresscomputer.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/101004/](https://www.expresscomputer.in/news/intel-announces-innovation-for-2023-at-the-oneapi-hackathon-organised-by-hack2skill/101004/)
