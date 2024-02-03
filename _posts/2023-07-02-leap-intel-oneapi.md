@@ -6,7 +6,7 @@ featured-img: leap-intel-oneapi/leap-intel-oneapi-card
 categories: Hackathon LLMs
 ---
 
-Recently, At the Intel® oneAPI Hackathon 2023, our team `C5ailabs` lead by me secured 1st prize 🏆  for our prototype, LEAP (Learning Enhancement and Assistance Platform) which is an AI-powered platform that enhances student learning outcomes and promotes equitable access to quality education. LEAP offers two key components:
+Recently, At the Intel® oneAPI Hackathon 2023, our team `C5ailabs` led by me secured 1st prize 🏆  for our prototype, LEAP (Learning Enhancement and Assistance Platform) which is an AI-powered platform that enhances student learning outcomes and promotes equitable access to quality education. LEAP offers two key components:
 
 ❑ Ask Question/Doubt: Students can ask real-time questions about provided materials, receiving answers with specific timestamps in related videos, eliminating the need to scroll through. Multilingual support ensures no language barriers hinder learning.
 
@@ -20,6 +20,10 @@ Intel® Neural Compressor and comparing Scikit-Learn Base model vs Intel® Exten
 [![LEAP](https://img.youtube.com/vi/CXkR5tklZm0/0.jpg)](https://www.youtube.com/watch?v=CXkR5tklZm0)
 
 For more details, please refer to [Intel® Developer Spotlight Link](https://community.intel.com/t5/Blogs/Tech-Innovation/Artificial-Intelligence-AI/Building-an-Online-Learning-Platform-using-Intel-AI-Analytics/post/1512256) 
+
+**Hackathon Video**
+- https://www.youtube.com/watch?v=J_vBMLToTKg
+- https://youtu.be/T3InChGhTfM?t=111
 
 Also Here are a few **News Articles**:
 
