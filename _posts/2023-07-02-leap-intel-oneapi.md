@@ -22,8 +22,8 @@ Intel® Neural Compressor and comparing Scikit-Learn Base model vs Intel® Exten
 For more details, please refer to [Intel® Developer Spotlight Link](https://community.intel.com/t5/Blogs/Tech-Innovation/Artificial-Intelligence-AI/Building-an-Online-Learning-Platform-using-Intel-AI-Analytics/post/1512256) 
 
 **Hackathon Video**
-- https://www.youtube.com/watch?v=J_vBMLToTKg
-- https://youtu.be/T3InChGhTfM?t=111
+- [https://www.youtube.com/watch?v=J_vBMLToTKg](https://www.youtube.com/watch?v=J_vBMLToTKg)
+- [https://youtu.be/T3InChGhTfM?t=111](https://youtu.be/T3InChGhTfM?t=111)
 
 Also Here are a few **News Articles**:
 
