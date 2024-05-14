@@ -22,4 +22,4 @@ Also, platforms like this can really help sellers especially small sellers to cr
 
 [![AdvertGen.ai](https://img.youtube.com/vi/Q-tgEzgdFEw/0.jpg)](https://www.youtube.com/watch?v=Q-tgEzgdFEw)
 
-![Goodies]({{ site.url }}{{ site.baseurl }}/assets/img/posts/advertgen-ai-aws/aws-hackathon-goodies.png)
+![Goodies]({{ site.url }}{{ site.baseurl }}/assets/img/posts/advertgen-ai-aws/aws-hackathon-goodies.jpg)
