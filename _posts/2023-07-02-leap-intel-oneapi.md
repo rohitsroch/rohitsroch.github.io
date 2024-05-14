@@ -3,7 +3,7 @@ layout: post
 title: LEAP (Learning Enhancement and Assistance Platform) powered by Intel® oneAPI AI Analytics Toolkit
 summary: LEAP is an AI-powered platform designed to enhance student learning outcomes and provide equitable access to quality education.
 featured-img: leap-intel-oneapi/leap-intel-oneapi-card
-categories: Hackathon LLMs
+categories: Hackathon LLMs GenAI
 ---
 
 Recently, At the Intel® oneAPI Hackathon 2023, our team `C5ailabs` led by me secured 1st prize 🏆  for our prototype, LEAP (Learning Enhancement and Assistance Platform) which is an AI-powered platform that enhances student learning outcomes and promotes equitable access to quality education. LEAP offers two key components:
