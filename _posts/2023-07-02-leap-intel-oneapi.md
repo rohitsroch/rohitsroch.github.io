@@ -23,7 +23,6 @@ For more details, please refer to [Intel® Developer Spotlight Link](https://com
 
 **Hackathon Videos**
 - [https://www.youtube.com/watch?v=J_vBMLToTKg](https://www.youtube.com/watch?v=J_vBMLToTKg)
-- [https://youtu.be/T3InChGhTfM?t=111](https://youtu.be/T3InChGhTfM?t=111)
 
 Also Here are a few **News Articles**:
 
