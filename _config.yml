@@ -15,6 +15,7 @@ social:
     - https://www.linkedin.com/in/rohitsroch
     - https://plus.google.com/+rohitsroch
     - https://github.com/rohitsroch
+    - https://huggingface.co/rohitsroch
     #- https://keybase.io/benbalter
 
 # THEME SETTINGS
@@ -37,7 +38,7 @@ email: rohitsroch@gmail.com # email for form submission
 
 twitter_username: rohitsroch # replace with your_twitter_username or comment to remove link from footer
 github_username:  rohitsroch # replace with your_github_username or comment to remove link from footer
-instagram_username: rohitsroch # replace with your_instagram_username or comment to remove link from footer
+huggingface_username: rohitsroch # replace with your_huggingface_username or comment to remove link from footer
 linkedin_username: rohitsroch # replace with your_linked_username or comment to remove link from footer
 
 disqus:
