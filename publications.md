@@ -15,4 +15,6 @@ permalink: /publications/
 **[5]** Moyan Mei and Rohit Sroch. 2023. **ESEAD: AN ENHANCED SIMPLE ENSEMBLE AND DISTILLATION FRAMEWORK FOR NATURAL LANGUAGE
 PROCESSING**. In 2023 11th International Conference on Learning Representations (ICLR'23) [Under Review]. [https://openreview.net/pdf?id=_omKGvXq0oX](https://openreview.net/pdf?id=_omKGvXq0oX)
 
+**[6]** Rohit Sroch. 2024. **DSPy: A Framework for Programming with LLMs [White Paper]**. Course5 Intelligence, AI Labs @C5i.ai (June 2024). [https://resources.c5i.ai/hubfs/Whitepaper/DSPy_A_Framework_for_Programming_with_LLMs.pdf](https://resources.c5i.ai/hubfs/Whitepaper/DSPy_A_Framework_for_Programming_with_LLMs.pdf)
+
 Also on [Google Scholar](https://scholar.google.com/citations?user=InqxsuEAAAAJ&hl=en&oi=sra)
