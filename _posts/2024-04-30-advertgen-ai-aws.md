@@ -10,7 +10,7 @@ Recently, At the AWS Generative AI Hackathon 2024, our `Course5 AI Labs` team se
 
 - **Lifestyle Background Images**: Utilizing Amazon Bedrock service Titan Image Generation model to regenerate product image backgrounds, enhancing visual appeal.
 
-- **Content Generation**: Crafting product titles and descriptions automatically for enhanced marketing impact, ensuring compelling content.
+- **Content Generation**: Crafting product titles and descriptions automatically by leveraging Amazon Bedrock service Titan Text Generation model for enhanced marketing impact, ensuring compelling content.
 
 - **Video Slideshow**: Generating engaging slideshows of regenerated images paired with audio description using Amazon Polly's text-to-speech feature, enhancing ad interactivity.
 
