@@ -2,7 +2,7 @@
 title: Rohit Sroch # your site title
 author: rohitsroch@gmail.com # You :P
 description: > # Meta description of Homepage
-  Hi there, I'm Rohit Sroch a Machine Learning Enthusiast working at Google with experience in building AI systems for NLU/NLG and Speech Domain 
+  Hi there, I'm Rohit Sroch a Machine Learning Enthusiast working at Google with experience in building AI systems for NLU/NLG and Speech Domain with recent focus on Generative AI
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://rohitsroch.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
