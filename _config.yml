@@ -2,7 +2,7 @@
 title: Rohit Sroch # your site title
 author: rohitsroch@gmail.com # You :P
 description: > # Meta description of Homepage
-  I'm an AI/ML Practitioner at Google with extensive experience engineering AI systems across a broad ML landscape, currently focused on building Generative and Agentic AI workflows
+  I'm an AI/ML Practitioner at Google with extensive experience engineering AI systems across a broad ML landscape, currently focused on building Generative and Agentic AI solutions
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://rohitsroch.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -29,7 +29,7 @@ navigation: # Navigation links
   - {name: 'Blog', link: '/#latest-posts'}
 
 tagline: >
-    I'm an AI/ML Practitioner at Google with extensive experience engineering AI systems across a broad ML landscape, currently focused on building Generative and Agentic AI workflows
+    I'm an AI/ML Practitioner at Google with extensive experience engineering AI systems across a broad ML landscape, currently focused on building Generative and Agentic AI solutions
   
 hero_avatar: avatar.jpg
 hero_img: emile-perron-190221_lg.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
